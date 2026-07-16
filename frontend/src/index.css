@@ -1,1 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-gm: Cormorant Garamond;
+}
+
+body {
+  @apply font-gm bg-amber-50
+}
+
+.nav-bg {
+  background-image: url("./assets/nav-bg.jpg");
+  background-size: cover;
+}
