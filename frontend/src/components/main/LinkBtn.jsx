@@ -4,7 +4,7 @@ export default function LinkBtn({ path, text, style }) {
         return (
             <Link 
             to={path}
-            className="hover:scale-105 transition duration-300 ease-in-out inline-block text-black bg-white font-semibold p-2 rounded-md text-sm"
+            className="hover:scale-105 transition duration-300 ease-in-out inline-block text-black bg-white p-2 rounded-md text-sm"
             >
                 { text }
             </Link>
@@ -13,7 +13,7 @@ export default function LinkBtn({ path, text, style }) {
     return (
         <Link 
         to={path}
-        className="hover:scale-105 transition duration-300 ease-in-out inline-block text-white bg-gray-700 p-2 font-semibold rounded-md text-sm"
+        className="text-white hover:scale-105 transition duration-300 ease-in-out inline-block bg-gray-700 p-2 rounded-md text-sm"
         >
             { text }
         </Link>

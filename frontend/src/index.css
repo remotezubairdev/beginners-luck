@@ -5,13 +5,13 @@
 }
 
 body {
-  @apply font-pn bg-[#181818] text-white ms-[300px]
+  @apply font-pn bg-[#f4f4f4] text-gray-800 ms-[300px]
 }
 
 .heading {
   @apply text-4xl font-semibold
 }
 
-.paragraph-dark {
-  @apply text-sm font-normal text-gray-300
+.paragraph {
+  @apply text-sm font-normal text-gray-600
 }
