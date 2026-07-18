@@ -5,7 +5,22 @@ export default function Register() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const submitRegisterForm = (data) => {
-        console.log(data);
+        const { username, email, password } = data;
+        fetch('http://127.0.0.1:8000/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(`User ${data.username} created successfully`)
+        })
         reset();
     }
 
