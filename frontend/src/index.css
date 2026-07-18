@@ -15,3 +15,11 @@ body {
 .paragraph {
   @apply text-sm font-normal text-gray-600
 }
+
+.container {
+  @apply bg-white border border-gray-300 p-8 rounded-xl
+}
+
+.input {
+  @apply bg-gray-50 border border-gray-200 p-1 outline-none
+}

@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import GoalsList from "../components/main/GoalsList";
 
 export default function Home() {
     return (
-        <div className="bg-white border border-gray-300 p-8 rounded-xl">
+        <div className="container">
             <h1>
                 Hello, Zubair
             </h1>
