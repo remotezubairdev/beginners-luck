@@ -1,10 +1,31 @@
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const navigate = useNavigate();
 
     const submitLoginForm = (data) => {
-        alert(`Username: ${data.username}, Password: ${data.password}`)
+        const { username, password } = data;
+        fetch('http://127.0.0.1:8000/api/token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem("access", data.access)
+            localStorage.setItem("refresh", data.refresh)
+
+            if (data.access && data.refresh) {
+                navigate("/")
+            }
+        })
         reset();
     }
     return (

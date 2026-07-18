@@ -20,6 +20,16 @@ body {
   @apply bg-white border border-gray-300 p-8 rounded-xl
 }
 
+.button {
+  @apply bg-gray-800 text-white p-2 text-sm rounded-md
+}
+.button-large {
+  @apply bg-gray-800 text-white p-4 rounded-xl
+}
+
 .input {
-  @apply bg-gray-50 border border-gray-200 p-1 outline-none
+  @apply border border-gray-300 py-1 px-4 outline-none rounded-md
+}
+.input-large {
+  @apply w-full border border-gray-300 p-3 outline-none rounded-xl
 }

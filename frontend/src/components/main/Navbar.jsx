@@ -1,10 +1,19 @@
 import { navLinks } from "../../constants/navLinks";
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export default function Navbar() {
     const { pathname } = useLocation();
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("access")
+        localStorage.removeItem("refresh")
+        navigate("/login")
+    }
+
     return (
-        <nav className="bg-white border-r border-gray-300 flex flex-col gap-32 fixed w-[250px] top-0 left-0 bottom-0">
+        <nav className="bg-white border-r border-gray-300 flex flex-col fixed w-[250px] top-0 left-0 bottom-0">
             <h1 className="text-xl font-semibold p-8">
                 Beginner's Luck
             </h1>
@@ -24,6 +33,7 @@ export default function Navbar() {
                     })
                 }
             </ul>
+            <button onClick={logout}>Logout</button>
         </nav>
     );
 }
