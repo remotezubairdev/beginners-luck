@@ -1,11 +1,8 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import MainGoal
-from .serializers import MainGoalSerializer
+from rest_framework import generics
+from .models import User
+from .serializers import UserSerializer
+from rest_framework.permissions import IsAuthenticated
 
-@api_view(['GET'])
-def index(request):
-    goals = MainGoal.objects.all()
-    serializer = MainGoalSerializer(goals, many=True)
-        
-    return Response(serializer.data)
+class RegisterUser(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
