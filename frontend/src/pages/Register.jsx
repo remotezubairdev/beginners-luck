@@ -1,17 +1,19 @@
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom';
-export default function Login() {
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+export default function Register() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const submitLoginForm = (data) => {
-        alert(`Username: ${data.username}, Password: ${data.password}`)
+    const submitRegisterForm = (data) => {
+        console.log(data);
         reset();
     }
+
     return (
         <div className="container">
-            <h1 className="text-3xl">Login</h1>
+            <h1 className="text-3xl">Register</h1>
             <form 
-            onSubmit={handleSubmit(submitLoginForm)}
+            onSubmit={handleSubmit(submitRegisterForm)}
             className="mt-8"
             >
                 <div className="flex flex-col items-start">
@@ -29,6 +31,24 @@ export default function Login() {
                     {
                         errors.username && (
                             <p className='text-red-500'>{errors.username.message}</p>
+                        )
+                    }
+                </div>
+                <div className="flex flex-col items-start">
+                    <label htmlFor="email">
+                        Email:
+                    </label>
+                    <input
+                    id="email"
+                    type="text"
+                    className="input"
+                    {...register("email", {
+                        required: "You must enter an email"
+                    })}
+                    />
+                    {
+                        errors.email && (
+                            <p className='text-red-500'>{errors.email.message}</p>
                         )
                     }
                 </div>
@@ -61,12 +81,12 @@ export default function Login() {
 
                 <input
                 type="submit"
-                value={"Login"}
+                value={"Register"}
                 className="border cursor-pointer bg-gray-800 text-white py-1 px-8 mt-8"
                 />
             </form>
-            <p className='mt-4'>
-                Don't have an account? <Link to="/register" className='underline'>Create an account</Link>
+            <p className="mt-4">
+                Already have an account? <Link to="/login" className="underline">Login</Link>
             </p>
         </div>
     );
