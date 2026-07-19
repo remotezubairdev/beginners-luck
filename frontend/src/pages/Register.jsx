@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 export default function Register() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const [error, setError] = useState(null);
 
     const submitRegisterForm = (data) => {
         const { username, email, password } = data;
@@ -17,7 +19,13 @@ export default function Register() {
                 password
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.status == 400) {
+                setError("User with that username already exists")
+                return;
+            }
+            return response.json()
+        })
         .then(data => {
             alert(`User ${data.username} created successfully`)
         })
@@ -31,6 +39,9 @@ export default function Register() {
             onSubmit={handleSubmit(submitRegisterForm)}
             className="mt-8"
             >
+            <p className="text-red-500">
+                {error}
+            </p>
                 <div className="flex flex-col items-start">
                     <label htmlFor="username">
                         Username:

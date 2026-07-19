@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import GoalsCard from './GoalsCard'
 import { Link, useNavigate } from 'react-router-dom';
-import { Plus } from 'lucide-react'
+import { LoaderCircle, Plus } from 'lucide-react'
 import CreateGoalCard from './CreateGoalCard';
 import { fetchData } from '../../utils/fetchData';
+import { AuthContext } from '../../context/AuthContext';
+import Loading from './../system/Loading';
 
 const GoalsList = () => {
     const navigate = useNavigate();
+    const { logout } = useContext(AuthContext)
     const [showCreationCard, setShowCreationCard] = useState(false);
     const [goals, setGoals] = useState(null);
     const fetchGoals = async () => {
-        const data = await fetchData('http://127.0.0.1:8000/api/main-goals')
-        setGoals(data)
+        try {
+            const data = await fetchData('http://127.0.0.1:8000/api/main-goals')
+            setGoals(data)
+        } catch (error) {
+            logout();
+        }
     }
     useEffect(() => {
         fetchGoals();
@@ -20,6 +27,7 @@ const GoalsList = () => {
     const toggleCard = () => {
         setShowCreationCard(prev => !prev)
     }
+
   return (
     <div>
         <div className='flex justify-between items-center py-2'>

@@ -22,8 +22,7 @@ export async function fetchData(url) {
                 localStorage.removeItem("access");
                 localStorage.removeItem("refresh");
                 // Redirect user to login
-                navigate("/login");
-                return;
+                return null;
             }
             // Once token has been refreshed, save that to localstorage
             const newAccessToken = await refreshResponse.json();
