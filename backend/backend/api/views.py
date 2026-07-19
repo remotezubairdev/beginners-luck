@@ -14,3 +14,9 @@ class MainGoalList(generics.ListAPIView):
 
     def get_queryset(self):
         return MainGoal.objects.filter(user=self.request.user)
+    
+class RetrieveUser(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user

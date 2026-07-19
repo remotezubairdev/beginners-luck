@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 export default function Login() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const submitLoginForm = (data) => {
@@ -19,11 +21,12 @@ export default function Login() {
         })
         .then(response => response.json())
         .then(data => {
-            localStorage.setItem("access", data.access)
-            localStorage.setItem("refresh", data.refresh)
-
             if (data.access && data.refresh) {
+                localStorage.setItem("access", data.access)
+                localStorage.setItem("refresh", data.refresh)
                 navigate("/")
+            } else {
+                setError(data.detail)
             }
         })
         reset();
@@ -35,6 +38,7 @@ export default function Login() {
             onSubmit={handleSubmit(submitLoginForm)}
             className="mt-8"
             >
+                <p className='text-red-500'>{error}</p>
                 <div className="flex flex-col items-start">
                     <label htmlFor="username">
                         Username:

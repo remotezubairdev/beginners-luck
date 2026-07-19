@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 export default function CreateGoalCard({ toggleCard }) {
     return (
-        <div className="shadow-xl container fixed inset-50">
+        <div className="shadow-xl container fixed w-[700px]">
             <div className="flex justify-between">
                 <h1 className="text-2xl">Create a New Main Goal</h1>
                 <X size={35} onClick={toggleCard} className="cursor-pointer" />

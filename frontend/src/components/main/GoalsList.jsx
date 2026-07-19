@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import GoalsCard from './GoalsCard'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react'
 import CreateGoalCard from './CreateGoalCard';
+import { fetchData } from '../../utils/fetchData';
 
 const GoalsList = () => {
+    const navigate = useNavigate();
     const [showCreationCard, setShowCreationCard] = useState(false);
     const [goals, setGoals] = useState(null);
+    const fetchGoals = async () => {
+        const data = await fetchData('http://127.0.0.1:8000/api/main-goals')
+        setGoals(data)
+    }
     useEffect(() => {
-        const access = localStorage.getItem("access")
-        fetch('http://127.0.0.1:8000/api/main-goals', {
-            headers: {
-                Authorization: `Bearer ${access}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.code === "token_not_valid") {
-                return;
-            }
-            setGoals(data)
-        })
+        fetchGoals();
     }, [])
 
     const toggleCard = () => {

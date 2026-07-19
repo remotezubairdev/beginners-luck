@@ -1,5 +1,5 @@
 import { navLinks } from "../../constants/navLinks";
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 export default function Navbar() {
     const { pathname } = useLocation();
@@ -25,15 +25,17 @@ export default function Navbar() {
                         const Icon = link.icon
                         return (
                             <li key={index}>
-                                <a href={link.path} className={`flex items-center gap-4 ${pathname === link.path ? 'bg-gray-50 border border-gray-300 rounded-xl' : ''} px-4 py-2`}>
+                                <Link to={link.path} className={`flex items-center gap-4 ${pathname === link.path ? 'bg-gray-50 border border-gray-300 rounded-xl' : ''} px-4 py-2`}>
                                     <Icon size={25} /> {link.name}
-                                </a>
+                                </Link>
                             </li>
                         );
                     })
                 }
             </ul>
-            <button onClick={logout}>Logout</button>
+            {
+                <button className="button m-4 cursor-pointer" onClick={logout}>Logout</button>
+            }
         </nav>
     );
 }
